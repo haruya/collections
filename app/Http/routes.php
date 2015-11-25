@@ -17,6 +17,8 @@ Route::get('home', 'HomeController@index');
 
 Route::controller('setup', 'SetupController');
 
+Route::controller('gathers', 'GathersController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
