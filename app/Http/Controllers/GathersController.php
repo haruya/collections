@@ -2,15 +2,17 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Gather;
 
 use Illuminate\Http\Request;
 
 class GathersController extends Controller {
 
 
-	public function index()
+	public function getIndex()
 	{
-
+		$gathers = Gather::paginate(3);
+		return view('gathers.index')->with('gathers', $gathers);
 	}
 
 	public function getCreate()
@@ -18,15 +20,9 @@ class GathersController extends Controller {
 		return view("gathers.create");
 	}
 
-	public function postCreate(Request $request)
+	public function postCreate(Requests\GathersPostRequest $request)
 	{
-		$val = \Validator::make($request->all(), [
-			'name'=>'required',
-			'code'=>'required',
-		]);
-		if ($val->fails()) {
-			return redirect()->back()->withErrors($val->errors());
-		}
-		return var_dump(\Input::all());
+		$gather = Gather::create($request->all());
+		$gather->save();
 	}
 }

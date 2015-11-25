@@ -25,7 +25,7 @@
     <div class="form-group">
       {!! Form::label("description", "説明", ["class"=>"col-sm-2 control-label"]) !!}
       <div class="col-sm-10">
-        {!! Form::text("descriotion", "", ["class"=>"form-control"]) !!}
+        {!! Form::text("description", "", ["class"=>"form-control"]) !!}
       </div>
     </div>
     <div class="form-group">
