@@ -48,6 +48,31 @@ class SetupController extends Controller
                 ->back()
                 ->withMessage("{$db_table}テーブルを作成しました")
                 ->withAlert("alert alert-success");
+        } elseif ($db_table == 'details') {
+			Schema::create($db_table, function(Blueprint $table)
+			{
+				$table->increments('id');
+				$table->integer('gather_id');
+				$table->integer('item_id');
+				$table->text('content');
+				$table->timestamps();
+				$table->timestamp('deleted_at', null)->nullable();
+			});
+			return redirect()
+			->back()
+			->withMessage("{$db_table}テーブルを作成しました")
+			->withAlert("alert alert-success");
+        } elseif ($db_table == 'items') {
+			Schema::create($db_table, function(Blueprint $table)
+			{
+				$table->increments('id');
+				$table->string('name', 100);
+				$table->integer('sort')->default(1);
+			});
+			return redirect()
+			->back()
+			->withMessage("{$db_table}テーブルを作成しました")
+			->withAlert("alert alert-success");
         } else {
             Schema::create($db_table, function (Blueprint $table) {
                 $table->increments('id');
